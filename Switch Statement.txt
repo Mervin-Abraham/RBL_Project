@@ -1,0 +1,56 @@
+        def get_fitness(self, vector):
+        vector = vector
+        value = ObjectiveFunction.switch(self, vector)
+        return value #,self.vector
+
+    def switch(self, vector):
+        print(
+            "\n1: Spherical Function \n 2: Rosenbrock's Function \n 3: Beale's Function\n 4: Code Function (positive) \n 5: Code Function (negative) ")
+        option = 1 #int(input("Enter Your Choice : "))  # takes user input
+        # Dictionary Mapping
+        dict = {
+            1: Spherical(vector),
+            2: Rosenbrock(vector),
+            3: Beale(vector),
+            4: Code_Pos(vector),
+            5: Code_Negvector(vector)
+        }
+        dict.get(self, option, lambda: default,vector)()  # get() method returns the function matching the argument
+
+    def Spherical(self, params):
+        a = np.sum(vector) ** 2  # Spherical Test Function
+        print("Spherical Function = ", a)
+        return a
+
+    def Rosenbrock(self, params):
+        x = vector[0]
+        y = vector[1]
+        a = 1 - x
+        b = y - x * x
+        d = (1 - x)
+        e = math.pow(d, 2)
+        f = y - math.pow(d, 2)
+        g = math.pow(b, 2)
+        c = math.log(1 + e + 100 * g)
+        return c  # Rosenbrock Test Function
+        # result = log(1+(1-params(1))^2+100*(params(2)-params(1)^2)^2)
+
+        print("Rosenbrock''s Function = ", result)
+
+    def Beale(self, params):
+        result = (1.5 - params(1) + params(1) * params(2)) ** 2 + (
+                    2.25 - params(1) + params(1) * (params(2) ** 2)) ** 2 + (
+                             2.625 - params(1) + params(1) * (params(2) ** 3)) ** 2
+        print("Beale''s Function = ", result)
+
+    def Code_Pos(self, params):
+        result = (10 * params(1)) - 1.0 * params(2) + 100 * params(3) + 1.0 * params(4)
+        print("Code Function (positive) = ", result)
+
+    def Code_Neg(self, params):
+        result = -(10 * params(1)) - 1.0 * params(2) + 100 * params(3) + 1.0 * params(4);
+        print("Code Function (negative) = ", result)
+
+    def default():
+        print("Incorrect option")
+    # Spherical Rosenbrock, Beale's, Code Positive and negative
